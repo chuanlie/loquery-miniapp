@@ -1,0 +1,59 @@
+<view class="container">
+
+  <!-- 顶部 Logo -->
+  <view class="header">
+    <text class="logo">🔍</text>
+    <text class="title">Lo查查</text>
+    <text class="subtitle">罗丽塔圈风险账号查询</text>
+  </view>
+
+  <!-- 搜索框 -->
+  <view class="search-card">
+    <view class="search-row">
+      <input
+        class="search-input"
+        placeholder="输入对方账号ID或昵称"
+        value="{{keyword}}"
+        bindinput="onInput"
+        bindconfirm="onSearch"
+        confirm-type="search"
+      />
+      <button class="search-btn" bindtap="onSearch" loading="{{loading}}">查</button>
+    </view>
+
+    <!-- 平台筛选 -->
+    <scroll-view scroll-x class="platform-scroll">
+      <view class="platform-list">
+        <view
+          wx:for="{{platforms}}"
+          wx:key="*this"
+          class="platform-tag {{currentPlatform === item ? 'active' : ''}}"
+          bindtap="selectPlatform"
+          data-platform="{{item}}"
+        >{{item}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 提示 -->
+  <view class="tip-box">
+    <text class="tip-text">⚠️ 本平台数据仅供参考，不构成法律依据。查询结果不代表对方一定有风险，请结合实际情况判断。</text>
+  </view>
+
+  <!-- 统计数字 -->
+  <view class="stats-row">
+    <view class="stat-item">
+      <text class="stat-n">{{stats.total}}</text>
+      <text class="stat-l">收录账号</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-n red">{{stats.high}}</text>
+      <text class="stat-l">高风险</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-n yellow">{{stats.mid}}</text>
+      <text class="stat-l">中风险</text>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,55 @@
+<view class="container">
+
+  <view class="search-bar" bindtap="goBack">
+    <text class="search-kw">🔍 {{keyword}}</text>
+    <text class="search-change">重新查</text>
+  </view>
+
+  <!-- 无结果 -->
+  <view wx:if="{{records.length === 0}}" class="empty-box">
+    <text class="empty-icon">✅</text>
+    <text class="empty-title">暂无风险记录</text>
+    <text class="empty-desc">未在数据库中查到「{{keyword}}」的风险记录\n不代表该账号完全安全，交易时请保持谨慎</text>
+    <button class="report-btn outline" bindtap="goReport">我也遇到了问题，去举报</button>
+  </view>
+
+  <!-- 有结果 -->
+  <block wx:else>
+    <view class="result-count">共找到 {{records.length}} 条风险记录</view>
+
+    <view wx:for="{{records}}" wx:key="_id" class="record-card">
+      <!-- 风险等级 -->
+      <view class="card-header">
+        <view class="platform-badge">{{item.account_type}}</view>
+        <view class="risk-tag tag-{{item.risk_level}}">
+          {{item.risk_level === 'high' ? '⚠️ 高风险' : item.risk_level === 'mid' ? '⚡ 中风险' : '🔍 待观察'}}
+        </view>
+      </view>
+
+      <!-- 账号信息 -->
+      <view class="account-row">
+        <text class="account-id">{{item.account_id}}</text>
+        <text wx:if="{{item.nickname}}" class="account-nick">昵称：{{item.nickname}}</text>
+      </view>
+
+      <!-- 问题类型 -->
+      <view class="issue-tags">
+        <text class="issue-tag">{{item.issue_type}}</text>
+      </view>
+
+      <!-- 描述 -->
+      <text class="desc-text">{{item.desc}}</text>
+
+      <!-- 底部信息 -->
+      <view class="card-footer">
+        <text wx:if="{{item.report_count > 1}}" class="footer-item">👥 {{item.report_count}} 人举报</text>
+        <text wx:if="{{item.amount}}" class="footer-item">💰 涉及 {{item.amount}} 元</text>
+        <text wx:if="{{item.last_date}}" class="footer-item">📅 {{item.last_date}}</text>
+      </view>
+    </view>
+
+    <button class="report-btn" bindtap="goReport">我也遇到了问题，去举报 →</button>
+    <view class="disclaimer">以上信息由用户举报整理，仅供参考，不构成法律依据。</view>
+  </block>
+
+</view>

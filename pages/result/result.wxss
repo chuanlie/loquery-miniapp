@@ -1,0 +1,84 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  margin-bottom: 20rpx;
+}
+.search-kw { font-size: 28rpx; color: #374151; font-weight: 600; }
+.search-change { font-size: 24rpx; color: #be185d; }
+
+.result-count { font-size: 24rpx; color: #9ca3af; margin-bottom: 16rpx; }
+
+.record-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,.06);
+}
+.card-header { display: flex; align-items: center; gap: 12rpx; margin-bottom: 16rpx; }
+.platform-badge {
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 22rpx;
+  font-weight: 600;
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+}
+.risk-tag { border-radius: 8rpx; padding: 4rpx 14rpx; font-size: 24rpx; font-weight: 700; }
+.tag-high { background: #fee2e2; color: #b91c1c; }
+.tag-mid  { background: #fef3c7; color: #b45309; }
+.tag-low  { background: #f3f4f6; color: #6b7280; }
+
+.account-row { margin-bottom: 12rpx; }
+.account-id { font-size: 32rpx; font-weight: 800; color: #1f2937; display: block; }
+.account-nick { font-size: 22rpx; color: #9ca3af; margin-top: 4rpx; display: block; }
+
+.issue-tags { margin-bottom: 14rpx; }
+.issue-tag {
+  display: inline-block;
+  background: #fdf2f8;
+  color: #be185d;
+  font-size: 22rpx;
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+}
+
+.desc-text { font-size: 26rpx; color: #374151; line-height: 1.7; display: block; margin-bottom: 16rpx; }
+
+.card-footer { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.footer-item { font-size: 22rpx; color: #9ca3af; }
+
+.report-btn {
+  background: #be185d;
+  color: #fff;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  margin-top: 24rpx;
+  padding: 24rpx 0;
+}
+.report-btn.outline {
+  background: #fff;
+  color: #be185d;
+  border: 2rpx solid #be185d;
+}
+.report-btn::after { border: none; }
+
+.empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 32rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  text-align: center;
+}
+.empty-icon { font-size: 80rpx; margin-bottom: 20rpx; }
+.empty-title { font-size: 32rpx; font-weight: 700; color: #166534; margin-bottom: 12rpx; }
+.empty-desc { font-size: 24rpx; color: #9ca3af; line-height: 1.7; margin-bottom: 32rpx; white-space: pre-line; }
+
+.disclaimer { font-size: 20rpx; color: #d1d5db; text-align: center; margin-top: 16rpx; padding-bottom: 40rpx; }

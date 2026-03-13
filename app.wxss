@@ -1,0 +1,15 @@
+page {
+  background: #fdf2f8;
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #1f2937;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 24rpx;
+}
+
+/* 风险标签 */
+.tag-high { background: #fee2e2; color: #b91c1c; border-radius: 8rpx; padding: 4rpx 12rpx; font-size: 22rpx; font-weight: 700; }
+.tag-mid  { background: #fef3c7; color: #b45309; border-radius: 8rpx; padding: 4rpx 12rpx; font-size: 22rpx; font-weight: 700; }
+.tag-low  { background: #f3f4f6; color: #6b7280; border-radius: 8rpx; padding: 4rpx 12rpx; font-size: 22rpx; font-weight: 700; }

@@ -1,0 +1,3 @@
+<view class="container">
+  <web-view src="https://chuanlie.github.io/loquery-tools/举报.html"></web-view>
+</view>
