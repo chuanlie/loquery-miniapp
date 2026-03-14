@@ -30,6 +30,14 @@ Page({
     this.setData({ currentPlatform: e.currentTarget.dataset.platform })
   },
 
+  goReport() {
+    wx.navigateTo({ url: '/pages/report/report' })
+  },
+
+  goAdmin() {
+    wx.navigateTo({ url: '/pages/admin/admin' })
+  },
+
   async onSearch() {
     const { keyword, currentPlatform } = this.data
     if (!keyword.trim()) {

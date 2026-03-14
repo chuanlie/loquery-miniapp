@@ -1,84 +1,232 @@
+.container { background: #F8F5F7; min-height: 100vh; padding: 4rpx 24rpx 0; }
+
+/* 搜索条 */
 .search-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #fff;
-  border-radius: 16rpx;
-  padding: 20rpx 24rpx;
-  margin-bottom: 20rpx;
-}
-.search-kw { font-size: 28rpx; color: #374151; font-weight: 600; }
-.search-change { font-size: 24rpx; color: #be185d; }
-
-.result-count { font-size: 24rpx; color: #9ca3af; margin-bottom: 16rpx; }
-
-.record-card {
   background: #fff;
   border-radius: 20rpx;
-  padding: 28rpx;
-  margin-bottom: 16rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0,0,0,.06);
+  padding: 20rpx 28rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  border: 1.5rpx solid #F1DDE5;
+  box-shadow: 0 4rpx 16rpx rgba(232,154,177,.10);
 }
-.card-header { display: flex; align-items: center; gap: 12rpx; margin-bottom: 16rpx; }
-.platform-badge {
-  background: #f3f4f6;
-  color: #374151;
-  font-size: 22rpx;
-  font-weight: 600;
-  border-radius: 8rpx;
-  padding: 4rpx 12rpx;
+.search-icon { font-size: 28rpx; color: #D4B8C8; flex-shrink: 0; }
+.search-val { flex: 1; font-size: 28rpx; color: #3D3242; font-weight: 600; }
+.search-change { font-size: 24rpx; color: #E89AB1; font-weight: 600; flex-shrink: 0; }
+
+/* 状态条公共 */
+.status-text { flex: 1; }
+.status-main { font-size: 30rpx; font-weight: 700; display: block; }
+.status-sub { font-size: 24rpx; display: block; margin-top: 4rpx; }
+
+/* 无风险状态条 */
+.safe-status-bar {
+  background: #F0FAF4;
+  border: 1rpx solid #C8E8D4;
+  border-radius: 20rpx;
+  padding: 24rpx 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  margin-bottom: 20rpx;
 }
-.risk-tag { border-radius: 8rpx; padding: 4rpx 14rpx; font-size: 24rpx; font-weight: 700; }
-.tag-high { background: #fee2e2; color: #b91c1c; }
-.tag-mid  { background: #fef3c7; color: #b45309; }
-.tag-low  { background: #f3f4f6; color: #6b7280; }
-
-.account-row { margin-bottom: 12rpx; }
-.account-id { font-size: 32rpx; font-weight: 800; color: #1f2937; display: block; }
-.account-nick { font-size: 22rpx; color: #9ca3af; margin-top: 4rpx; display: block; }
-
-.issue-tags { margin-bottom: 14rpx; }
-.issue-tag {
-  display: inline-block;
-  background: #fdf2f8;
-  color: #be185d;
-  font-size: 22rpx;
-  border-radius: 8rpx;
-  padding: 4rpx 12rpx;
-}
-
-.desc-text { font-size: 26rpx; color: #374151; line-height: 1.7; display: block; margin-bottom: 16rpx; }
-
-.card-footer { display: flex; flex-wrap: wrap; gap: 16rpx; }
-.footer-item { font-size: 22rpx; color: #9ca3af; }
-
-.report-btn {
-  background: #be185d;
-  color: #fff;
-  border-radius: 16rpx;
-  font-size: 28rpx;
+.safe-check {
+  width: 48rpx; height: 48rpx;
+  background: #C8E8D4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #3A8A5A;
   font-weight: 700;
-  margin-top: 24rpx;
-  padding: 24rpx 0;
+  flex-shrink: 0;
 }
-.report-btn.outline {
-  background: #fff;
-  color: #be185d;
-  border: 2rpx solid #be185d;
-}
-.report-btn::after { border: none; }
+.status-main.safe { color: #3A8A5A; }
+.status-sub.safe { color: #7DB893; }
 
-.empty-box {
+/* 空状态卡 */
+.empty-card {
+  background: #fff;
+  border-radius: 20rpx;
+  border: 1rpx solid #EDE6EC;
+  padding: 28rpx 32rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80rpx 32rpx;
-  background: #fff;
-  border-radius: 24rpx;
-  text-align: center;
+  gap: 8rpx;
+  margin-bottom: 20rpx;
 }
-.empty-icon { font-size: 80rpx; margin-bottom: 20rpx; }
-.empty-title { font-size: 32rpx; font-weight: 700; color: #166534; margin-bottom: 12rpx; }
-.empty-desc { font-size: 24rpx; color: #9ca3af; line-height: 1.7; margin-bottom: 32rpx; white-space: pre-line; }
+.empty-illus { font-size: 56rpx; line-height: 1; opacity: .6; }
+.empty-title { font-size: 30rpx; font-weight: 700; color: #3D3242; }
+.empty-desc { font-size: 24rpx; color: #B0A0B0; text-align: center; line-height: 1.6; }
 
-.disclaimer { font-size: 20rpx; color: #d1d5db; text-align: center; margin-top: 16rpx; padding-bottom: 40rpx; }
+/* 查询信息卡 */
+.info-card {
+  background: #fff;
+  border-radius: 20rpx;
+  border: 1rpx solid #EDE6EC;
+  padding: 4rpx 28rpx;
+  margin-bottom: 20rpx;
+}
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #F5EAF0;
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { font-size: 24rpx; color: #B0A0B0; }
+.info-val { font-size: 26rpx; color: #3D3242; font-weight: 600; }
+
+/* 免责提示 */
+.tips-card {
+  background: #FEFAF2;
+  border-radius: 16rpx;
+  border-left: 6rpx solid #F0D898;
+  padding: 22rpx 26rpx;
+  margin-bottom: 20rpx;
+}
+.tips-text { font-size: 24rpx; color: #C0A870; line-height: 1.7; }
+
+/* 举报 CTA */
+.report-cta {
+  background: linear-gradient(135deg, #FFF4F8 0%, #FEEAF3 100%);
+  border-radius: 20rpx;
+  border: 1rpx solid #F5DCEA;
+  padding: 26rpx 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.report-cta-left { display: flex; align-items: center; gap: 18rpx; }
+.report-cta-icon { font-size: 40rpx; }
+.report-cta-title { font-size: 28rpx; font-weight: 700; color: #3D3242; display: block; }
+.report-cta-desc { font-size: 22rpx; color: #C4B0C0; display: block; margin-top: 6rpx; }
+.report-cta-btn {
+  background: #E89AB1;
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 700;
+  border-radius: 40rpx;
+  padding: 14rpx 28rpx;
+  box-shadow: 0 4rpx 14rpx rgba(232,154,177,.35);
+  flex-shrink: 0;
+}
+
+/* 高风险状态条 */
+.risk-status-bar {
+  background: #FDF0F2;
+  border: 1rpx solid #F2C8CE;
+  border-radius: 20rpx;
+  padding: 24rpx 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  margin-bottom: 20rpx;
+}
+.risk-status-icon { font-size: 36rpx; flex-shrink: 0; }
+.status-main.risk { color: #C4424E; }
+.status-sub.risk { color: #D4848E; }
+
+/* 统计卡 */
+.stat-row { display: flex; gap: 16rpx; margin-bottom: 20rpx; }
+.stat-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 18rpx;
+  border: 1rpx solid #EDE6EC;
+  padding: 26rpx 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+  min-height: 120rpx;
+  justify-content: center;
+}
+.stat-card.danger { border-color: #FADDDC; }
+.stat-num { font-size: 52rpx; font-weight: 900; line-height: 1; }
+.stat-num.danger { color: #D97A72; }
+.stat-num.amber { color: #C49A52; }
+.stat-lbl { font-size: 22rpx; font-weight: 500; color: #C4B0C0; }
+
+/* 风险记录卡 */
+.risk-card {
+  background: #fff;
+  border-radius: 20rpx;
+  border: 1rpx solid #EDE6EC;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,.04);
+}
+.risk-card-header {
+  background: #FDF0F2;
+  border-bottom: 1rpx solid #F2C8CE;
+  padding: 22rpx 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+}
+.risk-avatar {
+  width: 72rpx; height: 72rpx;
+  background: #F5C0C8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34rpx;
+  flex-shrink: 0;
+}
+.risk-card-name-area { flex: 1; }
+.risk-card-name { font-size: 30rpx; font-weight: 800; color: #3D3242; display: block; }
+.risk-card-sub { font-size: 22rpx; color: #B0A0B0; display: block; margin-top: 4rpx; }
+.risk-badge {
+  font-size: 22rpx;
+  font-weight: 700;
+  border-radius: 40rpx;
+  padding: 8rpx 20rpx;
+  flex-shrink: 0;
+}
+.risk-badge.high { background: #FDE0E4; color: #C4424E; }
+.risk-badge.mid  { background: #FEF0DC; color: #C49A52; }
+.risk-badge.low  { background: #F0EAF4; color: #9B8A9A; }
+
+.risk-card-body { padding: 24rpx 28rpx; }
+.risk-tags { display: flex; flex-wrap: wrap; gap: 10rpx; margin-bottom: 18rpx; }
+.risk-tag {
+  font-size: 22rpx;
+  font-weight: 700;
+  border-radius: 40rpx;
+  padding: 6rpx 18rpx;
+}
+.risk-tag.issue { background: rgba(217,122,114,.14); color: #D97A72; }
+.risk-tag.platform { background: #FAF6F8; color: #9B8A9A; border: 1rpx solid #EDE6EC; }
+.risk-desc { font-size: 24rpx; color: #9B8A9A; line-height: 1.7; display: block; margin-bottom: 18rpx; }
+.risk-meta { display: flex; justify-content: space-between; }
+.risk-meta-item { font-size: 20rpx; color: #C4B0C0; }
+.risk-meta-val { color: #B0A0B0; font-weight: 500; }
+
+/* 交易安全提示 */
+.safe-tip-card {
+  background: #FEFAF2;
+  border-radius: 16rpx;
+  border-left: 6rpx solid #F0D898;
+  padding: 22rpx 26rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+.safe-tip-title { font-size: 26rpx; font-weight: 700; color: #C49A52; }
+.safe-tip-list { font-size: 24rpx; color: #C0A870; line-height: 1.8; white-space: pre-line; }
+
+/* 底部安全区 */
+.safe-bottom {
+  height: constant(safe-area-inset-bottom);
+  height: env(safe-area-inset-bottom);
+  min-height: 48rpx;
+}

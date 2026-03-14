@@ -1,15 +1,11 @@
 page {
-  background: #fdf2f8;
-  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-  color: #1f2937;
+  background: #FFF9FB;
+  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: #3D3242;
   box-sizing: border-box;
 }
+.container { padding: 0 24rpx 48rpx; }
 
-.container {
-  padding: 24rpx;
-}
-
-/* 风险标签 */
-.tag-high { background: #fee2e2; color: #b91c1c; border-radius: 8rpx; padding: 4rpx 12rpx; font-size: 22rpx; font-weight: 700; }
-.tag-mid  { background: #fef3c7; color: #b45309; border-radius: 8rpx; padding: 4rpx 12rpx; font-size: 22rpx; font-weight: 700; }
-.tag-low  { background: #f3f4f6; color: #6b7280; border-radius: 8rpx; padding: 4rpx 12rpx; font-size: 22rpx; font-weight: 700; }
+.tag-high { background: rgba(217,122,114,.15); color: #D97A72; border-radius: 8rpx; padding: 4rpx 14rpx; font-size: 22rpx; font-weight: 700; border: 1rpx solid rgba(217,122,114,.3); }
+.tag-mid  { background: rgba(196,154,82,.15); color: #C49A52; border-radius: 8rpx; padding: 4rpx 14rpx; font-size: 22rpx; font-weight: 700; border: 1rpx solid rgba(196,154,82,.3); }
+.tag-low  { background: rgba(180,160,180,.12); color: #9B8A9A; border-radius: 8rpx; padding: 4rpx 14rpx; font-size: 22rpx; font-weight: 700; }

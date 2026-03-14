@@ -3,8 +3,32 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 const db = cloud.database()
 const _ = db.command
 
+const SEED_RECORDS = [
+  { account_type: '咸鱼', account_id: 'xianyu_scammer_88', nickname: '萝莉塔小铺旗舰', risk_level: 'high', issue_type: '收款后不发货/跑路', platform: '咸鱼', report_count: 5, amount: 3200, last_date: '2026-01', display_status: 'yes', desc: '用户反映该账号收款后失联，多名买家付款后商品未发出，涉及金额约3200元。', created_at: '2026-01-10T08:00:00.000Z' },
+  { account_type: '微信', account_id: 'wx_fake_jk999', nickname: 'JK制服批发小姐姐', risk_level: 'mid', issue_type: '引流微信私下转账', platform: '微信私下', report_count: 2, amount: 800, last_date: '2026-02', display_status: 'yes', desc: '用户反映被引导加微信私下付款，转账后对方将其拉黑，涉及JK制服款式。', created_at: '2026-02-15T10:00:00.000Z' },
+  { account_type: '小红书', account_id: 'lolita_shop_fake', nickname: 'Lolita梦幻精品屋', risk_level: 'high', issue_type: '假货/以次充好', platform: '小红书', report_count: 8, amount: 5600, last_date: '2026-03', display_status: 'yes', desc: '用户反映该账号以正品价格出售山寨品牌Lo裙，实物与宣传图严重不符。', created_at: '2026-03-01T08:00:00.000Z' },
+]
+const SEED_REPORTS = [
+  { platforms: ['咸鱼'], account_id: 'test_pending_seller', issue_types: ['收款不发货', '跑路失联'], desc: '付款后卖家已读不回，一周后直接删除商品，无法联系。', contact: 'wx_test', images: [], status: 'pending', created_at: new Date().toISOString() },
+]
+
 exports.main = async (event) => {
   const { action, keyword, platform } = event
+
+  // 写入测试数据（仅调试用，正式上线前可删除此 action）
+  if (action === 'seed') {
+    const riskIds = []
+    for (const r of SEED_RECORDS) {
+      const res = await db.collection('risk_records').add({ data: r })
+      riskIds.push(res._id)
+    }
+    const reportIds = []
+    for (const r of SEED_REPORTS) {
+      const res = await db.collection('reports').add({ data: r })
+      reportIds.push(res._id)
+    }
+    return { ok: true, riskRecords: riskIds.length, reports: reportIds.length }
+  }
 
   // 统计数据
   if (action === 'stats') {

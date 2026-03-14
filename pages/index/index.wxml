@@ -1,33 +1,37 @@
-<view class="container">
+<view class="page">
 
-  <!-- 顶部 Logo -->
-  <view class="header">
-    <text class="logo">🔍</text>
-    <text class="title">Lo查查</text>
-    <text class="subtitle">罗丽塔圈风险账号查询</text>
+  <!-- 状态栏占位 -->
+  <view class="status-bar"></view>
+
+  <!-- 标题栏（长按标题进入管理后台） -->
+  <view class="nav-bar">
+    <view bindlongpress="goAdmin">
+      <text class="nav-title">Lo查查</text>
+      <text class="nav-subtitle">买 Lo 前，先查风险</text>
+    </view>
   </view>
 
-  <!-- 搜索框 -->
-  <view class="search-card">
-    <view class="search-row">
+  <!-- 搜索区 -->
+  <view class="search-area">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
       <input
         class="search-input"
-        placeholder="输入对方账号ID或昵称"
+        placeholder="请输入账号ID / 昵称"
         value="{{keyword}}"
         bindinput="onInput"
         bindconfirm="onSearch"
         confirm-type="search"
+        placeholder-class="search-placeholder"
       />
-      <button class="search-btn" bindtap="onSearch" loading="{{loading}}">查</button>
+      <button class="search-btn" bindtap="onSearch" loading="{{loading}}">查一查</button>
     </view>
-
-    <!-- 平台筛选 -->
-    <scroll-view scroll-x class="platform-scroll">
+    <scroll-view scroll-x class="platform-scroll" enable-flex>
       <view class="platform-list">
         <view
           wx:for="{{platforms}}"
           wx:key="*this"
-          class="platform-tag {{currentPlatform === item ? 'active' : ''}}"
+          class="ptag {{currentPlatform === item ? 'ptag-on' : ''}}"
           bindtap="selectPlatform"
           data-platform="{{item}}"
         >{{item}}</view>
@@ -35,25 +39,40 @@
     </scroll-view>
   </view>
 
-  <!-- 提示 -->
-  <view class="tip-box">
-    <text class="tip-text">⚠️ 本平台数据仅供参考，不构成法律依据。查询结果不代表对方一定有风险，请结合实际情况判断。</text>
+  <!-- 分割线 -->
+  <view class="divider-line"></view>
+
+  <!-- 数据卡片 -->
+  <view class="data-row">
+    <view class="data-card">
+      <text class="data-num">{{stats.total}}</text>
+      <text class="data-label">收录账号</text>
+    </view>
+    <view class="data-card danger">
+      <text class="data-num">{{stats.high}}</text>
+      <text class="data-label">⚠ 高风险</text>
+    </view>
+    <view class="data-card warn">
+      <text class="data-num">{{stats.mid}}</text>
+      <text class="data-label">⚡ 中风险</text>
+    </view>
   </view>
 
-  <!-- 统计数字 -->
-  <view class="stats-row">
-    <view class="stat-item">
-      <text class="stat-n">{{stats.total}}</text>
-      <text class="stat-l">收录账号</text>
+  <!-- 举报入口 -->
+  <view class="report-card" bindtap="goReport">
+    <view class="report-card-left">
+      <view class="report-card-icon">📢</view>
+      <view>
+        <text class="report-card-title">遇到问题了？</text>
+        <text class="report-card-desc">匿名举报，帮助更多姐妹避坑</text>
+      </view>
     </view>
-    <view class="stat-item">
-      <text class="stat-n red">{{stats.high}}</text>
-      <text class="stat-l">高风险</text>
-    </view>
-    <view class="stat-item">
-      <text class="stat-n yellow">{{stats.mid}}</text>
-      <text class="stat-l">中风险</text>
-    </view>
+    <view class="report-card-btn">去举报</view>
+  </view>
+
+  <!-- 免责声明 -->
+  <view class="disclaimer">
+    <text>⚠ 数据仅供参考，不构成法律依据，请结合实际情况判断</text>
   </view>
 
 </view>

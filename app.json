@@ -2,13 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/result/result",
-    "pages/report/report"
+    "pages/report/report",
+    "pages/admin/admin"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#be185d",
+    "navigationBarBackgroundColor": "#FFF9FB",
     "navigationBarTitleText": "Lo查查",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "cloud": true,
   "sitemapLocation": "sitemap.json",

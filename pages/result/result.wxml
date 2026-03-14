@@ -1,55 +1,124 @@
 <view class="container">
 
+  <!-- 搜索条 -->
   <view class="search-bar" bindtap="goBack">
-    <text class="search-kw">🔍 {{keyword}}</text>
-    <text class="search-change">重新查</text>
+    <text class="search-icon">🔍</text>
+    <text class="search-val">{{keyword}}</text>
+    <text class="search-change">重新查询</text>
   </view>
 
-  <!-- 无结果 -->
-  <view wx:if="{{records.length === 0}}" class="empty-box">
-    <text class="empty-icon">✅</text>
-    <text class="empty-title">暂无风险记录</text>
-    <text class="empty-desc">未在数据库中查到「{{keyword}}」的风险记录\n不代表该账号完全安全，交易时请保持谨慎</text>
-    <button class="report-btn outline" bindtap="goReport">我也遇到了问题，去举报</button>
-  </view>
+  <!-- ===== 无风险 ===== -->
+  <block wx:if="{{records.length === 0}}">
 
-  <!-- 有结果 -->
-  <block wx:else>
-    <view class="result-count">共找到 {{records.length}} 条风险记录</view>
-
-    <view wx:for="{{records}}" wx:key="_id" class="record-card">
-      <!-- 风险等级 -->
-      <view class="card-header">
-        <view class="platform-badge">{{item.account_type}}</view>
-        <view class="risk-tag tag-{{item.risk_level}}">
-          {{item.risk_level === 'high' ? '⚠️ 高风险' : item.risk_level === 'mid' ? '⚡ 中风险' : '🔍 待观察'}}
-        </view>
-      </view>
-
-      <!-- 账号信息 -->
-      <view class="account-row">
-        <text class="account-id">{{item.account_id}}</text>
-        <text wx:if="{{item.nickname}}" class="account-nick">昵称：{{item.nickname}}</text>
-      </view>
-
-      <!-- 问题类型 -->
-      <view class="issue-tags">
-        <text class="issue-tag">{{item.issue_type}}</text>
-      </view>
-
-      <!-- 描述 -->
-      <text class="desc-text">{{item.desc}}</text>
-
-      <!-- 底部信息 -->
-      <view class="card-footer">
-        <text wx:if="{{item.report_count > 1}}" class="footer-item">👥 {{item.report_count}} 人举报</text>
-        <text wx:if="{{item.amount}}" class="footer-item">💰 涉及 {{item.amount}} 元</text>
-        <text wx:if="{{item.last_date}}" class="footer-item">📅 {{item.last_date}}</text>
+    <view class="safe-status-bar">
+      <view class="safe-check">✓</view>
+      <view class="status-text">
+        <text class="status-main safe">暂未发现风险记录</text>
+        <text class="status-sub safe">数据库中未收录该账号</text>
       </view>
     </view>
 
-    <button class="report-btn" bindtap="goReport">我也遇到了问题，去举报 →</button>
-    <view class="disclaimer">以上信息由用户举报整理，仅供参考，不构成法律依据。</view>
+    <view class="empty-card">
+      <text class="empty-illus">🌸</text>
+      <text class="empty-title">暂未发现相关记录</text>
+      <text class="empty-desc">数据库中未收录该账号的投诉或风险信息</text>
+    </view>
+
+    <view class="info-card">
+      <view class="info-row">
+        <text class="info-label">查询账号</text>
+        <text class="info-val">{{keyword}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">查询时间</text>
+        <text class="info-val">{{queryDate}}</text>
+      </view>
+    </view>
+
+    <view class="tips-card">
+      <text class="tips-text">⚠️ 未收录不代表绝对安全，数据库持续更新中。若有疑虑，建议优先选择有担保的交易方式。</text>
+    </view>
+
+    <view class="report-cta" bindtap="goReport">
+      <view class="report-cta-left">
+        <text class="report-cta-icon">🚩</text>
+        <view>
+          <text class="report-cta-title">遇到问题了？</text>
+          <text class="report-cta-desc">匿名举报，帮助更多姐妹避坑</text>
+        </view>
+      </view>
+      <view class="report-cta-btn">去举报</view>
+    </view>
+
   </block>
+
+  <!-- ===== 有风险 ===== -->
+  <block wx:else>
+
+    <view class="risk-status-bar">
+      <text class="risk-status-icon">⚠️</text>
+      <view class="status-text">
+        <text class="status-main risk">发现 {{records.length}} 条风险记录</text>
+        <text class="status-sub risk">该账号已被多次投诉，请谨慎交易</text>
+      </view>
+    </view>
+
+    <view class="stat-row">
+      <view class="stat-card danger">
+        <text class="stat-num danger">{{records.length}}</text>
+        <text class="stat-lbl">举报记录</text>
+      </view>
+      <view class="stat-card danger">
+        <text class="stat-num danger">{{totalVictims}}</text>
+        <text class="stat-lbl">受害人数</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-num amber">{{totalAmountText}}</text>
+        <text class="stat-lbl">涉及金额</text>
+      </view>
+    </view>
+
+    <view wx:for="{{records}}" wx:key="_id" class="risk-card">
+      <view class="risk-card-header">
+        <view class="risk-avatar">🛍</view>
+        <view class="risk-card-name-area">
+          <text class="risk-card-name">{{item.account_id}}</text>
+          <text wx:if="{{item.nickname}}" class="risk-card-sub">昵称：{{item.nickname}}</text>
+          <text wx:else class="risk-card-sub">{{item.platformLabel}} · {{item.account_type}}</text>
+        </view>
+        <view class="risk-badge {{item.risk_level}}">{{item.riskLabel}}</view>
+      </view>
+      <view class="risk-card-body">
+        <view class="risk-tags">
+          <text class="risk-tag issue">{{item.issue_type}}</text>
+          <text wx:if="{{item.platformLabel}}" class="risk-tag platform">{{item.platformLabel}}</text>
+        </view>
+        <text class="risk-desc">{{item.desc}}</text>
+        <view class="risk-meta">
+          <text wx:if="{{item.last_date}}" class="risk-meta-item">最近投诉 <text class="risk-meta-val">{{item.last_date}}</text></text>
+          <text wx:if="{{item.report_count > 1}}" class="risk-meta-item">{{item.report_count}} 人举报</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="report-cta" bindtap="goReport">
+      <view class="report-cta-left">
+        <text class="report-cta-icon">🚩</text>
+        <view>
+          <text class="report-cta-title">也被坑过？</text>
+          <text class="report-cta-desc">补充举报，帮助更多姐妹避坑</text>
+        </view>
+      </view>
+      <view class="report-cta-btn">去举报</view>
+    </view>
+
+    <view class="safe-tip-card">
+      <text class="safe-tip-title">🛡 交易安全提示</text>
+      <text class="safe-tip-list">· 尽量使用平台担保交易\n· 不要接受私下转账或微信付款\n· 保留聊天记录以备维权</text>
+    </view>
+
+  </block>
+
+  <view class="safe-bottom"></view>
 
 </view>

@@ -1,0 +1,89 @@
+.container { background: #F8F5F7; min-height: 100vh; padding: 4rpx 24rpx 0; }
+
+/* 初始化按钮 */
+.seed-bar {
+  background: #FEF0DC; border: 1rpx solid #F0D898;
+  border-radius: 14rpx; padding: 18rpx 24rpx;
+  margin-top: 16rpx; margin-bottom: 4rpx;
+}
+.seed-text { font-size: 26rpx; color: #C49A52; font-weight: 600; }
+
+/* 筛选条 */
+.filter-row { display: flex; gap: 12rpx; padding: 20rpx 0 16rpx; flex-wrap: wrap; }
+.filter-tag {
+  background: #fff; border: 1.5rpx solid #EDE6EC;
+  border-radius: 40rpx; padding: 10rpx 24rpx;
+  font-size: 24rpx; color: #9B8A9A;
+}
+.filter-tag-on {
+  background: #FDF0F5; color: #D4809C;
+  border-color: #EDBED0; font-weight: 700;
+}
+
+/* 加载/空 */
+.loading-tip { text-align: center; color: #C4B0C0; font-size: 26rpx; padding: 80rpx 0; }
+.empty-tip { display: flex; flex-direction: column; align-items: center; gap: 14rpx; padding: 80rpx 0; }
+.empty-illus { font-size: 64rpx; opacity: .6; }
+.empty-text { font-size: 26rpx; color: #B0A0B0; }
+
+/* 举报卡片 */
+.report-card {
+  background: #fff; border-radius: 20rpx;
+  border: 1rpx solid #EDE6EC; margin-bottom: 20rpx;
+  padding: 24rpx 28rpx; overflow: hidden;
+}
+
+/* 头部 */
+.card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12rpx; }
+.card-header-left { flex: 1; }
+.card-account { font-size: 30rpx; font-weight: 800; color: #3D3242; display: block; }
+.card-platform { font-size: 22rpx; color: #B0A0B0; display: block; margin-top: 4rpx; }
+
+/* 状态徽章 */
+.status-badge {
+  font-size: 22rpx; font-weight: 700; border-radius: 40rpx; padding: 6rpx 18rpx; flex-shrink: 0;
+}
+.status-badge.pending        { background: #FEF0DC; color: #C49A52; }
+.status-badge.approved       { background: #E8F5EE; color: #3A8A5A; }
+.status-badge.rejected       { background: #FDE0E4; color: #C4424E; }
+.status-badge.needs_evidence { background: #F0EAF4; color: #9B8A9A; }
+
+/* 问题类型 */
+.card-issues { display: flex; flex-wrap: wrap; gap: 8rpx; margin-bottom: 14rpx; }
+.issue-tag {
+  background: rgba(217,122,114,.12); color: #D97A72;
+  font-size: 22rpx; font-weight: 700;
+  border-radius: 40rpx; padding: 4rpx 16rpx;
+}
+
+/* 内容文字 */
+.card-desc    { font-size: 24rpx; color: #6A5A6A; line-height: 1.7; display: block; margin-bottom: 10rpx; }
+.card-imgs-tip{ font-size: 22rpx; color: #B0A0B0; display: block; margin-bottom: 8rpx; }
+.card-contact { font-size: 22rpx; color: #B0A0B0; display: block; margin-bottom: 8rpx; }
+.card-time    { font-size: 20rpx; color: #C4B0C0; display: block; margin-bottom: 18rpx; }
+
+/* 操作按钮 */
+.card-actions { display: flex; gap: 14rpx; margin-top: 4rpx; }
+.btn-approve, .btn-evidence, .btn-reject {
+  flex: 1; text-align: center;
+  font-size: 24rpx; font-weight: 700;
+  border-radius: 14rpx; padding: 14rpx 0;
+}
+.btn-approve  { background: #E8F5EE; color: #3A8A5A; }
+.btn-evidence { background: #FEF0DC; color: #C49A52; }
+.btn-reject   { background: #FDE0E4; color: #C4424E; }
+
+/* 审核结论 */
+.card-verdict {
+  font-size: 22rpx; border-radius: 10rpx; padding: 10rpx 14rpx; margin-top: 8rpx;
+}
+.card-verdict.approved { background: #E8F5EE; color: #3A8A5A; }
+.card-verdict.rejected { background: #FDE0E4; color: #C4424E; }
+.card-verdict.evidence { background: #FEF0DC; color: #C49A52; }
+
+/* 底部安全区 */
+.safe-bottom {
+  height: constant(safe-area-inset-bottom);
+  height: env(safe-area-inset-bottom);
+  min-height: 48rpx;
+}

@@ -1,3 +1,80 @@
 <view class="container">
-  <web-view src="https://chuanlie.github.io/loquery-tools/举报.html"></web-view>
+
+  <!-- 风险账号信息 -->
+  <view class="section">
+    <view class="section-title">风险账号信息 <text class="required">*</text></view>
+    <view class="tag-list">
+      <view
+        wx:for="{{platforms}}" wx:key="*this"
+        class="tag {{activePlatforms[item] ? 'tag-active' : ''}}"
+        bindtap="togglePlatform" data-val="{{item}}"
+      >{{item}}</view>
+    </view>
+    <!-- 账号输入框始终保留 -->
+    <view class="account-row-default">
+      <text class="account-label-default">账号ID</text>
+      <input class="account-input" placeholder="请输入账号ID / 号码"
+        value="{{mainAccountId}}" bindinput="onMainAccountInput" />
+    </view>
+  </view>
+
+  <!-- 问题类型 -->
+  <view class="section">
+    <view class="section-title">问题类型 <text class="required">*</text></view>
+    <view class="tag-list">
+      <view
+        wx:for="{{issueTypes}}" wx:key="*this"
+        class="tag {{activeIssues[item] ? 'tag-active' : ''}}"
+        bindtap="toggleIssue" data-val="{{item}}"
+      >{{item}}</view>
+    </view>
+    <textarea wx:if="{{selectedIssues.indexOf('其他') > -1}}" class="textarea"
+      placeholder="请描述其他问题类型" value="{{otherIssue}}" bindinput="onOtherInput" />
+  </view>
+
+  <!-- 遭遇描述 -->
+  <view class="section">
+    <view class="section-title">遭遇描述</view>
+    <textarea class="textarea" placeholder="请描述您的遭遇（越详细越好）"
+      value="{{desc}}" bindinput="onDescInput" maxlength="500" />
+    <text class="char-count">{{desc.length}}/500</text>
+  </view>
+
+  <!-- 截图证据 -->
+  <view class="section">
+    <view class="section-title">截图证据（最多20张）</view>
+    <view class="img-list">
+      <view wx:for="{{images}}" wx:key="*this" class="img-item">
+        <image src="{{item}}" mode="aspectFill" class="img-thumb" />
+        <view class="img-del" bindtap="delImage" data-idx="{{index}}">×</view>
+      </view>
+    </view>
+    <view wx:if="{{images.length < 20}}" class="img-add-bar" bindtap="chooseImage">
+      <text class="img-add-bar-icon">📷</text>
+      <view class="img-add-bar-text">
+        <text class="img-add-bar-title">添加截图证据</text>
+        <text class="img-add-bar-hint">支持相册或拍照，最多20张</text>
+      </view>
+      <text class="img-add-bar-arrow">›</text>
+    </view>
+    <text wx:if="{{images.length > 0}}" class="img-count-tip">已添加 {{images.length}} 张</text>
+  </view>
+
+  <!-- 联系方式 -->
+  <view class="section">
+    <view class="section-title">您的联系方式（选填，方便核实）</view>
+    <input class="input" placeholder="请输入微信号 / QQ号 / 手机号"
+      value="{{contact}}" bindinput="onContactInput" />
+  </view>
+
+  <!-- 提示 -->
+  <view class="tip-box">
+    <text class="tip-text">🔒 请尽量提供真实、完整的材料，便于后续审核。</text>
+  </view>
+
+  <!-- 提交 -->
+  <button class="submit-btn" bindtap="onSubmit" loading="{{submitting}}">提交举报</button>
+
+  <view class="safe-bottom"></view>
+
 </view>

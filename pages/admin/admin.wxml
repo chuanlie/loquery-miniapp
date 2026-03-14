@@ -1,0 +1,72 @@
+<view class="container">
+
+  <!-- 初始化测试数据（首次使用） -->
+  <view class="seed-bar" bindtap="seedData">
+    <text class="seed-text">⚡ 写入测试数据（首次使用点一下）</text>
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-row">
+    <view
+      wx:for="{{filters}}" wx:key="*this"
+      class="filter-tag {{currentFilter === item ? 'filter-tag-on' : ''}}"
+      bindtap="setFilter" data-val="{{item}}"
+    >{{item}}{{item !== '全部' ? ' ' + counts[item] : ''}}</view>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="loading-tip">加载中...</view>
+
+  <!-- 空状态 -->
+  <view wx:elif="{{list.length === 0}}" class="empty-tip">
+    <text class="empty-illus">✅</text>
+    <text class="empty-text">暂无待审核的举报</text>
+  </view>
+
+  <!-- 举报列表 -->
+  <view wx:else>
+    <view wx:for="{{list}}" wx:key="_id" class="report-card">
+
+      <!-- 头部：账号 + 状态 -->
+      <view class="card-header">
+        <view class="card-header-left">
+          <text class="card-account">{{item.account_id || '（未填写）'}}</text>
+          <text class="card-platform">{{item.platformsText}}</text>
+        </view>
+        <view class="status-badge {{item.status}}">{{statusLabel[item.status] || item.status}}</view>
+      </view>
+
+      <!-- 问题类型 -->
+      <view class="card-issues">
+        <text wx:for="{{item.issue_types}}" wx:key="*this" wx:for-item="issue" class="issue-tag">{{issue}}</text>
+      </view>
+
+      <!-- 描述 -->
+      <text wx:if="{{item.desc}}" class="card-desc">{{item.desc}}</text>
+
+      <!-- 截图数量 -->
+      <text wx:if="{{item.images && item.images.length > 0}}" class="card-imgs-tip">📷 {{item.images.length}} 张截图</text>
+
+      <!-- 联系方式 -->
+      <text wx:if="{{item.contact}}" class="card-contact">联系方式：{{item.contact}}</text>
+
+      <!-- 时间 -->
+      <text class="card-time">{{item.dateText}}</text>
+
+      <!-- 操作按钮（仅 pending 状态可操作） -->
+      <view wx:if="{{item.status === 'pending'}}" class="card-actions">
+        <view class="btn-approve" bindtap="approve" data-id="{{item._id}}">✓ 审核通过</view>
+        <view class="btn-evidence" bindtap="askEvidence" data-id="{{item._id}}">◎ 证据不足</view>
+        <view class="btn-reject" bindtap="reject" data-id="{{item._id}}">✕ 驳回</view>
+      </view>
+
+      <!-- 审核结论（已处理） -->
+      <view wx:if="{{item.status === 'approved'}}" class="card-verdict approved">已审核通过 → 已收录入库</view>
+      <view wx:if="{{item.status === 'rejected'}}" class="card-verdict rejected">已驳回：{{item.reject_reason || '无备注'}}</view>
+      <view wx:if="{{item.status === 'needs_evidence'}}" class="card-verdict evidence">证据不足：待补充</view>
+
+    </view>
+  </view>
+
+  <view class="safe-bottom"></view>
+</view>
